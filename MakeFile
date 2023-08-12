@@ -1,0 +1,30 @@
+# Specify the C compiler
+cc = gcc
+
+# Specify the target executable name
+target = a.out
+
+# Rule to build the target executable
+$(target): main.o admin.o electoralOfficer.o User.o function.o
+	$(cc)  main.o admin.o electoralOfficer.o User.o function.o -o $(target)
+
+# Rule to build main.o
+main.o:main.c  header.h
+	$(cc) -c main.c
+
+admin.o:admin.c  header.h
+	$(cc) -c admin.c
+
+# Rule to build electoralOfficer.o
+electoralOfficer.o:electoralOfficer.c  header.h
+	$(cc) -c electoralOfficer.c
+
+# Rule to build User.o
+User.o:User.c  header.h
+	$(cc) -c User.c
+function.o:function.c  header.h
+	$(cc) -c function.c
+
+# Rule to clean the project
+clean:
+	rm -f $(target)
